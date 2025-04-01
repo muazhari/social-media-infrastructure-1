@@ -52,10 +52,15 @@ CREATE TABLE chat_message (
 
 -- dml
 INSERT INTO post(account_id, title, content)
-VALUES
-('65c13016-05f5-449b-9472-7afca5de2d03'::uuid, 'title0', 'content0'),
-('fb703a0b-9593-4282-bdfc-942131f23182'::uuid, 'title1', 'content1'),
-('2c61386d-0f37-48bb-a247-9cb5927d8974'::uuid, 'title2', 'content2');
+SELECT account.id, 'title0', 'content0'
+FROM ( 
+    VALUES 
+    ('65c13016-05f5-449b-9472-7afca5de2d03'::uuid), 
+    ('fb703a0b-9593-4282-bdfc-942131f23182'::uuid),
+    ('2c61386d-0f37-48bb-a247-9cb5927d8974'::uuid)
+) AS account(id);
+
+select * from post;
 
 
 INSERT INTO post_like(post_id, account_id) 

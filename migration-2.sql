@@ -1,3 +1,4 @@
+-- Active: 1743308173981@@127.0.0.1@5433@db
 -- extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE EXTENSION IF NOT EXISTS "pg_trgm";
