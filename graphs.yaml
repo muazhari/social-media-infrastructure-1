@@ -1,10 +1,10 @@
 subgraphs:
-  - name: account
+  - name: backend-1
     routing_url: http://172.23.128.1:8081/graphql 
     schema:
       file: ../social-media-backend-1/internal/outers/deliveries/graphqls/schema.graphqls
 
-  - name: content
+  - name: backend-2
     routing_url: http://172.23.128.1:8082/graphql
     schema:
       file: ../social-media-backend-2/src/main/resources/graphql/schema.graphqls

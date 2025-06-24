@@ -1,28 +1,51 @@
 services:
+  gateway-1:
+    image: ghcr.io/wundergraph/cosmo/router:latest
+    ports:
+      - "${GATEWAY_1_PORT}:3002"
+    working_dir: /app
+    env_file:
+      - ./.env
+    volumes:
+      - ${GATEWAY_1_PATH}:/app
   frontend-1:
-    image: muazhari/social-media-frontend-1:latest
-    build:
-      context: ${FRONTEND_1_PATH}
-      dockerfile: Dockerfile
+    image: node:latest
     ports:
       - "${FRONTEND_1_PORT}:3000"
+    working_dir: /app
+    command:
+      - npm
+      - run
+      - dev
     env_file:
       - ./.env
-    depends_on:
-      - backend-1
+    volumes:
+      - ${FRONTEND_1_PATH}:/app
   backend-1:
-    image: muazhari/social-media-backend-1:latest
-    build:
-      context: ${BACKEND_1_PATH}
-      dockerfile: Dockerfile
+    image: golang:latest
     ports:
-      - "${BACKEND_1_PORT}:8080"
+      - "${BACKEND_1_PORT}:8081"
+    working_dir: /app
+    command:
+      - go
+      - run
+      - ./internal/main.go
     env_file:
       - ./.env
-    depends_on:
-      - datastore-1
-      - datastore-2
-      - datastore-3
+    volumes:
+      - ${BACKEND_1_PATH}:/app
+  backend-2:
+    image: gradle:latest
+    ports:
+      - "${BACKEND_2_PORT}:8082"
+    working_dir: /app
+    command: 
+      - gradle
+      - bootRun
+    env_file:
+      - ./.env
+    volumes:
+      - ${BACKEND_2_PATH}:/app
   datastore-1:
     image: redis/redis-stack-server:latest
     ports:
