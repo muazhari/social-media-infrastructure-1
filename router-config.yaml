@@ -1,0 +1,5 @@
+authentication:
+  jwt:
+    jwks:
+      - url: http://172.23.128.1:80/.well-known/jwks.json
+  

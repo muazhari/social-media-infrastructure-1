@@ -1,13 +1,20 @@
 services:
   gateway-1:
+    image: nginx:latest
+    ports:
+      - "${GATEWAY_1_PORT}:80"
+    volumes:
+      - ${GATEWAY_1_PATH}:/app
+      - ./nginx.conf:/etc/nginx/nginx.conf
+  router-1:
     image: ghcr.io/wundergraph/cosmo/router:latest
     ports:
-      - "${GATEWAY_1_PORT}:3002"
+      - "${ROUTER_1_PORT}:3002"
     working_dir: /app
     env_file:
       - ./.env
     volumes:
-      - ${GATEWAY_1_PATH}:/app
+      - ${ROUTER_1_PATH}:/app
   frontend-1:
     image: node:latest
     ports:

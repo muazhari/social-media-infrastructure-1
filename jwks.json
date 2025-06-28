@@ -1,0 +1,19 @@
+{
+    "kty": "OKP",
+    "use": "sig",
+    "key_ops": [
+      "sign",
+      "verify",
+      "encrypt",
+      "decrypt",
+      "wrapKey",
+      "unwrapKey",
+      "deriveKey",
+      "deriveBits"
+    ],
+    "alg": "EdDSA",
+    "kid": "4ea90f1f-5fc4-4c25-a1c1-95d873d1af50",
+    "crv": "Ed25519",
+    "x": "mgj4k82FKISfNCyuNf4x66rw0fT8-F6MxCjkn4JYtyY",
+    "d": "hl2uilhGvflKQp2UeNPdxois3WBxxnG4RWeELUr8D8w"
+  }
