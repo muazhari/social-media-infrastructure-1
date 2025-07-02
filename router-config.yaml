@@ -1,5 +1,11 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/wundergraph/cosmo/main/router/pkg/config/config.schema.json
+
+version: "1"
+
 authentication:
   jwt:
     jwks:
-      - url: http://172.23.128.1:80/.well-known/jwks.json
+      - url: http://172.23.138.198:80/.well-known/jwks.json
+    header_name: Authorization
+    header_value_prefix: Bearer
   

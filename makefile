@@ -36,5 +36,5 @@ run-datastore:
 
 # publish subgraphs.
 publish-subgraph:
-	- npx wgc subgraph publish backend-1 --namespace default --schema ../social-media-backend-1/internal/outers/deliveries/graphqls/schema.graphqls --routing-url http://localhost:8081/graphql
-	- npx wgc subgraph publish backend-2 --namespace default --schema ../social-media-backend-2/src/main/resources/graphql/schema.graphqls --routing-url http://localhost:8082/graphql
+	- npx wgc subgraph publish backend-1 --namespace default --schema ../social-media-backend-1/internal/outers/deliveries/graphqls/schema.graphqls --routing-url http://172.23.128.1:8081/graphql
+	- npx wgc subgraph publish backend-2 --namespace default --schema ../social-media-backend-2/src/main/resources/graphql/schema.graphqls --routing-url http://172.23.128.1:8082/graphql

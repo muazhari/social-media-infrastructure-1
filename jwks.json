@@ -1,19 +1,18 @@
 {
-    "kty": "OKP",
-    "use": "sig",
-    "key_ops": [
-      "sign",
-      "verify",
-      "encrypt",
-      "decrypt",
-      "wrapKey",
-      "unwrapKey",
-      "deriveKey",
-      "deriveBits"
-    ],
-    "alg": "EdDSA",
-    "kid": "4ea90f1f-5fc4-4c25-a1c1-95d873d1af50",
-    "crv": "Ed25519",
-    "x": "mgj4k82FKISfNCyuNf4x66rw0fT8-F6MxCjkn4JYtyY",
-    "d": "hl2uilhGvflKQp2UeNPdxois3WBxxnG4RWeELUr8D8w"
-  }
+  "keys": [
+    {
+      "kty": "RSA",
+      "use": "sig",
+      "alg": "RS256",
+      "kid": "social-media-backend-key",
+      "d": "3Os_wxkNY2TW7_oiSsV-2AvOFwqEvT1nCD7H0RmMlCNoySv7aY92qjN9idea48BhquclFDDXlEMYxs6DCVg-rg938tDzK3zbi8cjogRvPInoxX1XmhSuYRnU7HGL_QLFGfVSObF0NG9fUV2SKUPrO_3vMk7psyvVO0wk1c430otGwVHvkqWhmEhdvSxSJ3q3HzTYb94LasbEh-H__KrbO1caL1o0VmW4xfhfLdRWnetAnwwxLyJ7v6ptfVwuLOJCnaBj9gzLUAfTsNlNCnmpiQ7KyRhc9vRmf7XZ9745we2O_CyBeNXLekq7KT3kjLsAbaGygCfxDvkA-OmqdsEtQQ",
+      "n": "60CTrS1KwjbAGEvyk5UnfVUMW4wtsDXtME8iCriLa8i_VBxe_uFrW8l1OUqG4rrW8yiQiTFEAZM9CbbD1abq5TRNnInswEZPb1Kf1ZJ1EpLGD-6M_gVtEqLQ8GuFEZkuzqCDLIG0fFZ4IhAN3yXJwhOL_1Obx0CgKJqJ-X2LVYJOV4HeDqDz8CPEt7cFiJgBHUwZkdc5CEMlckAWLjdfp8_rVwkJqaIblPTdTv5i9MWGHnwwBrCRDZgyy2Dkpvx6ODpDP4-Qf0do3DV5UH1jETQh-h3DFT61Ni3HPLwwhNB4ZhWZa1Q0_-ntn2q_IVvolR4_4YfbaazCQnEYk4_Dvw",
+      "e": "AQAB",
+      "p": "_BXSxIReKBWM59woQ0Xvf5xhf8qp7T3IBFq1WzdFFSy8RUCX_I_IK8twVmLF6Dsgv1uIu3XEvBQJtBBveGZ-4l0OPlgjFjufABITYRtNN2dKjUYPq0KbBjVApyo6ra-zBiuPYU3qwjYQma5w-pYgv-FJLOEVHmGyB1q4r55ET8U",
+      "q": "7ufVTE0-FiuLSmHr7-8UVEWqtdgfCjLUHWdhKvsHFuiudrUnl-4d5EqPp0aFEIdjOg6JTPxkBDgf_nLCHxyELyJFvFVVpNa6qbXQPe2dXndlhZARy3z6jBQ1dmcg5tRJM6Cahyipny38pThzRXK1MpVGcsxtE4XKi5PI5r5W2bM",
+      "dp": "tG36WeZUbmReYmZV-zDHZ5NKxekND121GEjEnfFFZQ6MAxVks8VGBPKsCWjRNpN7sPuXNnXoxqWg_Fz3LDpQfz0TwNPc6UDrYWWOsWaVMh6gYdXPyUj3JM5g5EV5km-7t6LeEUtvyGpiH12YSAPElRJvCcxhDUnn3xO0NR8WzfE",
+      "dq": "tE9nTfJSdLsiot4rC2i_SCdYg2x9aN4Z96NJ0_2oSSMOYeux2VpPVzjrGQ4Bags02eGUwPUQq5qMkyeb2Y1VOpm8Vjt1qzahpWrio4rOJjko91hYBePq2YR7IUUOsQjxwrRpTK9k7g3wS-bCIV1E4suFYylk_cIRr6y3iWeI9z8",
+      "qi": "tTYz70wz7D10F7YUtW0dIt3ykR8HAP0Z3zLQWacXEZ9iVtEfryP4_IMxBFpPDkUozVo4xojaz0gw9E8KpJ5B1snfoE2-qojZZQetwLK4uDOP-5iFoUnQlUT2jgBXZI--2oD16qwRnSOMQk1ncWJoB7R0288pm5avEyEyGy4fjdE"
+    }
+  ]
+}
