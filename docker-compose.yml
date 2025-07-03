@@ -59,6 +59,8 @@ services:
       - "${DATASTORE_1_PORT}:6379"
     environment:
       - REDIS_ARGS=--requirepass ${DATASTORE_2_PASSWORD}
+    volumes:
+      - ./volumes/datastore-1:/data
   datastore-2:
     image: postgis/postgis:latest
     ports:
@@ -70,6 +72,7 @@ services:
       PGDATA: /var/lib/pg_data
     volumes:
       - ./migration-2.sql:/docker-entrypoint-initdb.d/migration-2.sql
+      - ./volumes/datastore-2:/var/lib/postgresql/data
   datastore-3:
     image: postgis/postgis:latest
     ports:
@@ -81,3 +84,42 @@ services:
       PGDATA: /var/lib/pg_data
     volumes:
       - ./migration-3.sql:/docker-entrypoint-initdb.d/migration-3.sql
+      - ./volumes/datastore-3:/var/lib/postgresql/data
+  datastore-4:
+    image: minio/minio:latest
+    ports:
+      - "${DATASTORE_4_PORT}:9000"
+      - "${DATASTORE_4_CONSOLE_PORT}:9001"
+    environment:
+      - MINIO_ROOT_USER=${DATASTORE_4_ROOT_USER}
+      - MINIO_ROOT_PASSWORD=${DATASTORE_4_ROOT_PASSWORD}
+    volumes:
+      - ./volumes/datastore-4:/minio
+    entrypoint: [ "minio" ]
+    command:
+      - server
+      - /minio
+      - --console-address
+      - :9001
+  datastore-5:
+    image: apache/kafka:latest
+    ports:
+      - "${DATASTORE_5_PORT}:9094"
+    environment:
+      - KAFKA_NODE_ID=0
+      - KAFKA_PROCESS_ROLES=controller,broker
+      - KAFKA_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093,EXTERNAL://:9094
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://datastore-5:9092,EXTERNAL://localhost:9094
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      - KAFKA_CONTROLLER_QUORUM_VOTERS=0@datastore-5:9093
+      - KAFKA_CONTROLLER_LISTENER_NAMES=CONTROLLER
+  kafka-ui-1:
+    image: provectuslabs/kafka-ui:latest
+    ports:  
+      - "${KAFKA_UI_1_PORT}:8080"
+    environment:
+      - DYNAMIC_CONFIG_ENABLED=true
+      - KAFKA_CLUSTERS_0_NAME=datastore-5
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=datastore-5:9092
+      - KAFKA_CLUSTERS_0_READONLY=false
+  

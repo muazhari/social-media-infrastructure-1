@@ -12,7 +12,7 @@ stop-all:
 	- docker compose down frontend-1
 	- docker compose down router-1
 	- docker compose down backend-1 backend-2
-	- docker compose down datastore-1 datastore-2 datastore-3
+	- docker compose down datastore-1 datastore-2 datastore-3 datastore-4 datastore-5 kafka-ui-1
 
 # Run gateway containers.
 run-gateway:
@@ -32,7 +32,7 @@ run-backend:
 
 # Run datastore containers.
 run-datastore:
-	docker compose -f docker-compose.yml up -d datastore-1 datastore-2 datastore-3
+	docker compose -f docker-compose.yml up -d datastore-1 datastore-2 datastore-3 datastore-4 datastore-5 kafka-ui-1
 
 # publish subgraphs.
 publish-subgraph:
