@@ -11,7 +11,8 @@ CREATE TABLE post (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     account_id UUID NOT NULL,
     title TEXT NOT NULL,
-    content TEXT NOT NULL
+    content TEXT NOT NULL,
+    image_id UUID NULL
 );
 
 -- Create the post like table
@@ -52,16 +53,13 @@ CREATE TABLE chat_message (
 
 -- dml
 INSERT INTO post(account_id, title, content)
-SELECT account.id, 'title0', 'content0'
+SELECT account.id, 'title' || account.i, 'content' || account.i
 FROM ( 
     VALUES 
-    ('65c13016-05f5-449b-9472-7afca5de2d03'::uuid), 
-    ('fb703a0b-9593-4282-bdfc-942131f23182'::uuid),
-    ('2c61386d-0f37-48bb-a247-9cb5927d8974'::uuid)
-) AS account(id);
-
-select * from post;
-
+    ('65c13016-05f5-449b-9472-7afca5de2d03'::uuid, '0'), 
+    ('fb703a0b-9593-4282-bdfc-942131f23182'::uuid, '1'),
+    ('2c61386d-0f37-48bb-a247-9cb5927d8974'::uuid, '2')
+) AS account(id, i);
 
 INSERT INTO post_like(post_id, account_id) 
 SELECT post.id, account.id
@@ -73,10 +71,9 @@ CROSS JOIN (
     ('2c61386d-0f37-48bb-a247-9cb5927d8974'::uuid)
 ) AS account(id);
 
-INSERT INTO chat_room(name, description) VALUES
-('name0', 'description0'),
-('name1', 'description1'),
-('name2', 'description2');
+INSERT INTO chat_room(name, description)
+SELECT 'name' || i::text, 'description' || i::text
+FROM generate_series(0, 2) AS i;
 
 INSERT INTO chat_room_member(chat_room_id, account_id)
 SELECT chat_room.id, account.id

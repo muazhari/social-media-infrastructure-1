@@ -2,15 +2,15 @@
 all:
 	- make run-datastore
 	- make run-backend
+	- make run-gateway
 	- make run-router
 	- make run-frontend
-	- make run-gateway
 
 # Stop all containers.
 stop-all:
-	- docker compose down gateway-1
 	- docker compose down frontend-1
 	- docker compose down router-1
+	- docker compose down gateway-1
 	- docker compose down backend-1 backend-2
 	- docker compose down datastore-1 datastore-2 datastore-3 datastore-4 datastore-5 kafka-ui-1
 

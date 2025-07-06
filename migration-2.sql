@@ -9,6 +9,7 @@ CREATE EXTENSION IF NOT EXISTS "postgis";
 DROP TABLE IF EXISTS account CASCADE;
 CREATE TABLE account (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    image_id UUID NULL,
     name TEXT,
     email TEXT UNIQUE,
     password TEXT NULL,
