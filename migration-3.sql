@@ -86,14 +86,13 @@ CROSS JOIN (
 ) AS account(id);
 
 INSERT INTO chat_message(chat_room_id, account_id, content)
-SELECT chat_room.id, account.id, 'content0'
+SELECT chat_room.id, account.id, 'content' || ROW_NUMBER() OVER (ORDER BY account.id) - 1
 FROM chat_room
 CROSS JOIN ( 
     VALUES 
     ('65c13016-05f5-449b-9472-7afca5de2d03'::uuid), 
     ('fb703a0b-9593-4282-bdfc-942131f23182'::uuid),
     ('2c61386d-0f37-48bb-a247-9cb5927d8974'::uuid)
-) AS account(id);
-
+) AS account(id)
 
 
