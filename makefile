@@ -6,8 +6,14 @@ all:
 	- make run-router
 	- make run-frontend
 
-# Stop all containers.
-stop-all:
+# Run dev containers.
+run-dev:
+	- make run-datastore
+	- make run-gateway
+	- make run-router
+
+# Remove all containers.
+remove-all:
 	- docker compose down frontend-1
 	- docker compose down router-1
 	- docker compose down gateway-1
@@ -36,5 +42,5 @@ run-datastore:
 
 # publish subgraphs.
 publish-subgraph:
-	- npx wgc subgraph publish backend-1 --namespace default --schema ../social-media-backend-1/internal/outers/deliveries/graphqls/schema.graphqls --routing-url http://172.23.128.1:8081/graphql
-	- npx wgc subgraph publish backend-2 --namespace default --schema ../social-media-backend-2/src/main/resources/graphql/schema.graphqls --routing-url http://172.23.128.1:8082/graphql
+	- npx wgc subgraph publish backend-1 --namespace default --schema ./backend-1-schema.graphqls --routing-url http://172.23.128.1:8081/graphql
+	- npx wgc subgraph publish backend-2 --namespace default --schema ./backend-2-schema.graphqls --routing-url http://172.23.128.1:8082/graphql

@@ -1,0 +1,78 @@
+scalar Upload
+
+type Account @key(fields: "id") {
+    id: ID!
+    imageUrl: String
+    name: String!
+    email: String!
+    password: String! @requiresScopes(scopes: [["admin"]])
+    totalPostLike: Float!
+    totalChatMessage: Float!
+    scopes: [String!]!
+}
+
+type ChatMessage @key(fields: "id") @extends {
+    id: ID!
+    accountId: ID! @external
+    account: Account! @requires(fields: "accountId")
+}
+
+type ChatRoomMember @key(fields: "id") @extends {
+    id: ID!
+    accountId: ID! @external
+    account: Account! @requires(fields: "accountId")
+}
+
+type ChatRoom @key(fields: "id") @extends {
+    id: ID!
+}
+
+type Post @key(fields: "id") @extends {
+    id: ID!
+    accountId: ID! @external
+    account: Account! @requires(fields: "accountId")
+}
+
+type PostLike @key(fields: "id") @extends {
+    id: ID!
+    accountId: ID! @external
+    account: Account! @requires(fields: "accountId")
+}
+
+type Session {
+    account: Account!
+    accessToken: String!
+    refreshToken: String!
+}
+
+type Query {
+    accounts: [Account!]!
+    account(id: ID!): Account
+}
+
+input AccountInput {
+  image: Upload
+  name: String!
+  email: String!
+  password: String!
+  scopes: [String!]
+}
+
+input LoginInput {
+    email: String!
+    password: String!
+}
+
+input RegisterInput {
+    name: String!
+    email: String!
+    password: String!
+}
+
+type Mutation {
+    login(input: LoginInput!): Session!
+    register(input: RegisterInput!): Account!
+    createAccount(input: AccountInput!): Account!
+    updateAccount(id: ID!, input: AccountInput!): Account!
+    deleteAccount(id: ID!): Account!
+}

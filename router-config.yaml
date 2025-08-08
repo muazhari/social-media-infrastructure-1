@@ -2,6 +2,12 @@
 
 version: "1"
 
+headers:
+  all:
+    request:
+      - op: "propagate"
+        named: "Authorization"
+
 authentication:
   jwt:
     jwks:
