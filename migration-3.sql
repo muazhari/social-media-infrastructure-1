@@ -21,7 +21,8 @@ CREATE TABLE post_like (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     post_id UUID NOT NULL,
     account_id UUID NOT NULL,
-    FOREIGN KEY (post_id) REFERENCES post(id) ON DELETE CASCADE
+    FOREIGN KEY (post_id) REFERENCES post(id) ON DELETE CASCADE,
+    UNIQUE (post_id, account_id)
 );
 
 -- Create the chat room table

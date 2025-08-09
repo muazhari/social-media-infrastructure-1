@@ -11,7 +11,14 @@ headers:
 authentication:
   jwt:
     jwks:
-      - url: http://172.23.138.198:80/.well-known/jwks.json
+      - url: "${AUTH_JWKS_URL}"
     header_name: Authorization
     header_value_prefix: Bearer
+
+events:
+  providers:
+    kafka:
+      - id: default
+        brokers:
+          - "${DATASTORE_5_HOST}:${DATASTORE_5_PORT}"
   
