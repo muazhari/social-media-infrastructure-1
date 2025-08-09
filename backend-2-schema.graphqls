@@ -69,7 +69,6 @@ input PostInput {
 
 input PostLikeInput {
     postId: ID!
-    accountId: ID
 }
 
 type Query {
@@ -84,8 +83,8 @@ type Query {
 type Mutation {
     addChatRoom(input: ChatRoomInput!): ChatRoom
     addMemberToChatRoom(input: ChatRoomMemberInput!): ChatRoomMember
-    addChatMessage(input: ChatMessageInput!): ChatMessage
-    addPost(input: PostInput!): Post
+    addMyChatMessage(input: ChatMessageInput!): ChatMessage
+    addMyPost(input: PostInput!): Post
     likePost(input: PostLikeInput!): PostLike
     unlikePost(input: PostLikeInput!): PostLike
 }
