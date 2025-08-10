@@ -2,6 +2,8 @@
 
 version: "1"
 
+log_level: "debug"
+
 headers:
   all:
     request:
@@ -12,13 +14,13 @@ authentication:
   jwt:
     jwks:
       - url: "${AUTH_JWKS_URL}"
-    header_name: Authorization
-    header_value_prefix: Bearer
+    header_name: "Authorization"
+    header_value_prefix: "Bearer"
 
 events:
   providers:
     kafka:
-      - id: default
+      - id: "default"
         brokers:
           - "${DATASTORE_5_HOST}:${DATASTORE_5_PORT}"
   

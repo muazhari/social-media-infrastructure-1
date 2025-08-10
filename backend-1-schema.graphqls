@@ -51,11 +51,11 @@ type Query {
 }
 
 input AccountInput {
-  image: Upload
-  name: String!
-  email: String!
-  password: String!
-  scopes: [String!]
+    image: Upload
+    name: String!
+    email: String!
+    password: String!
+    scopes: [String!]
 }
 
 input LoginInput {

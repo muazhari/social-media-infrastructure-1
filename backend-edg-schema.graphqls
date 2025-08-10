@@ -1,0 +1,22 @@
+directive @edfs__kafkaSubscribe(topics: [String!]!, providerId: String! = "default") on FIELD_DEFINITION
+directive @edfs__kafkaPublish(topic: String!, providerId: String! = "default") on FIELD_DEFINITION
+
+type edfs__PublishResult { 
+  success: Boolean! 
+}
+
+type Account @key(fields: "id", resolvable: false) {
+  id: ID! @external
+}
+
+type Subscription {
+  postLikeIncremented: Account! @edfs__kafkaSubscribe(topics: ["postLike.increment"], providerId: "default")
+  postLikeDecremented: Account! @edfs__kafkaSubscribe(topics: ["postLike.decrement"], providerId: "default")
+  chatMessageIncremented: Account! @edfs__kafkaSubscribe(topics: ["chatMessage.increment"], providerId: "default")
+}
+
+type Mutation {    
+  publishPostLikeIncrement(accountId: ID!): edfs__PublishResult! @edfs__kafkaPublish(topic: "postLike.increment", providerId: "default")
+  publishPostLikeDecrement(accountId: ID!): edfs__PublishResult! @edfs__kafkaPublish(topic: "postLike.decrement", providerId: "default")
+  publishChatMessageIncrement(accountId: ID!): edfs__PublishResult! @edfs__kafkaPublish(topic: "chatMessage.increment", providerId: "default")
+}

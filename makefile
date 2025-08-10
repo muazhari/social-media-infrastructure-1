@@ -40,7 +40,20 @@ run-backend:
 run-datastore:
 	docker compose -f docker-compose.yml up -d datastore-1 datastore-2 datastore-3 datastore-4 datastore-5 kafka-ui-1
 
+# create subgraphs.
+create-subgraph:
+	- npx wgc subgraph create backend-1 --namespace default --routing-url http://172.23.128.1:8081/graphql
+	- npx wgc subgraph create backend-2 --namespace default --routing-url http://172.23.128.1:8082/graphql
+	- npx wgc subgraph create backend-edg --namespace default --event-driven-graph
+
 # publish subgraphs.
 publish-subgraph:
-	- npx wgc subgraph publish backend-1 --namespace default --schema ./backend-1-schema.graphqls --routing-url http://172.23.128.1:8081/graphql
-	- npx wgc subgraph publish backend-2 --namespace default --schema ./backend-2-schema.graphqls --routing-url http://172.23.128.1:8082/graphql
+	- npx wgc subgraph publish backend-1 --namespace default --schema ./backend-1-schema.graphqls
+	- npx wgc subgraph publish backend-2 --namespace default --schema ./backend-2-schema.graphqls
+	- npx wgc subgraph publish backend-edg --namespace default --schema ./backend-edg-schema.graphqls
+
+# delete subgraphs.
+delete-subgraph:
+	- npx wgc subgraph delete backend-1 --namespace default --force
+	- npx wgc subgraph delete backend-2 --namespace default --force
+	- npx wgc subgraph delete backend-edg --namespace default --force
